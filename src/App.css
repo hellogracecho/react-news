@@ -1,33 +1,99 @@
-.App {
+/* font-family: 'Montserrat Subrayada', sans-serif; */
+/* font-family: 'Montserrat', sans-serif; */
+*,
+*::before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  color: #343434;
+  font-family: "Montserrat", sans-serif;
+  background: white;
+}
+.wrapper {
+  margin: 20px 40px;
+}
+
+/* Nav bar */
+/* NavLink Style */
+.nav {
+  margin: 20px 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1.2em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  padding: 5px 15px;
+  margin-right: 20px;
+  color: #9a9191;
+}
+
+.active {
+  color: white;
+  background: #ff4856;
+  border-radius: 3px;
+}
+
+.nav-link:hover,
+.nav-link:active,
+.nav-link:focus {
+  color: white;
+  background: #ff4856;
+  border-radius: 3px;
+}
+
+h1 {
+  margin: 50px 0;
+  font-size: 3em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #ff4856;
+}
+
+/* Child Component Style */
+/* Home */
+.home-body {
+  margin-top: 80px;
+}
+.date-result {
+  margin: 20px 0;
+  opacity: 0.5;
+}
+
+h2 {
+  color: #537dcc;
+}
+
+h3 {
+  color: #38bf57;
+}
+
+/* Child Component Style */
+/* About */
+.about-body h2 {
+  color: #679cff;
+}
+.about-body a {
+  color: #38bf57;
+}
+.about-body a:hover,
+.about-body a:focus,
+.about-body a:active {
+  color: #679cff;
+}
+
+footer {
+  margin: 80px 0 20px 0;
+  padding: 20px;
+  background: #ff4856;
+  color: white;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+footer a {
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  text-decoration: none;
 }

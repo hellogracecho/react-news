@@ -1,26 +1,72 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+import NotFound from "./NotFound";
+import "./App.css";
+import { NavLink } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div>
+          <div className="wrapper">
+            <div className="nav">
+              <NavLink
+                exact={true}
+                to="/"
+                activeClassName="active"
+                className="nav-link"
+              >
+                HOME
+              </NavLink>
+              <NavLink
+                to="/about"
+                activeClassName="active"
+                className="nav-link"
+              >
+                ABOUT
+              </NavLink>
+            </div>
+            <h1>News Database with React</h1>
+            {/* Our router goes here */}
+            <Switch>
+              <Route exact path="/" component={Home} />
+
+              {/* Does a redirect. */}
+              <Route path={"/about"} exact component={About} />
+
+              {/* Shows an error page. */}
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </div>
+          <footer>
+            <p>
+              <a
+                href="http://hellogracecho.com"
+                alt="Grace Cho portfolio site"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                &copy; 2019 Grace Cho
+              </a>
+              {" | "}
+              Reference{" "}
+              <a
+                href="https://newsapi.org/"
+                alt="The News DB API"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                NEWS API
+              </a>
+            </p>
+          </footer>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
