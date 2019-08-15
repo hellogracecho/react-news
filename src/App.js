@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Home";
+import Search from "./Search";
 import About from "./About";
 import NotFound from "./NotFound";
 import "./App.css";
@@ -13,23 +14,26 @@ class App extends Component {
         <div>
           <div className="wrapper">
             <div className="nav">
-              <NavLink
-                exact={true}
-                to="/"
-                activeClassName="active"
-                className="nav-link"
-              >
-                HOME
-              </NavLink>
-              <NavLink
-                to="/about"
-                activeClassName="active"
-                className="nav-link"
-              >
-                ABOUT
-              </NavLink>
+              <div>
+                <NavLink
+                  exact={true}
+                  to="/"
+                  activeClassName="active"
+                  className="nav-link"
+                >
+                  HOME
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  activeClassName="active"
+                  className="nav-link"
+                >
+                  ABOUT
+                </NavLink>
+              </div>
+              <div className="logo">Graceful News Feed</div>
+              <Search />
             </div>
-            <h1>News Database with React</h1>
             {/* Our router goes here */}
             <Switch>
               <Route exact path="/" component={Home} />

@@ -3,10 +3,8 @@ import "./App.css";
 
 class About extends React.Component {
   render() {
-    const test = 1;
     return (
       <div className="about-body">
-        <p>{test == 0 ? "N/A" : test}</p>
         <h2>Who Am I?</h2>
         <p>
           Visit my portfolio site:{" "}

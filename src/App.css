@@ -19,6 +19,9 @@ body {
 /* NavLink Style */
 .nav {
   margin: 20px 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .nav-link {
@@ -28,7 +31,7 @@ body {
   font-weight: 700;
   padding: 5px 15px;
   margin-right: 20px;
-  color: #9a9191;
+  color: #e73131;
 }
 
 .active {
@@ -45,12 +48,38 @@ body {
   border-radius: 3px;
 }
 
-h1 {
-  margin: 50px 0;
-  font-size: 3em;
+.logo {
+  font-size: 4em;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   color: #ff4856;
+  text-transform: uppercase;
+  letter-spacing: -3px;
+}
+
+/* Child Component Style */
+/* Search */
+.search-container {
+  display: flex;
+  flex-direction: row;
+  border: #9a9191 2px solid;
+  border-radius: 3px;
+}
+
+.search-container input {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2em;
+  border: none;
+  width: 180px;
+  color: #9a9191;
+  line-height: 1.2em;
+  padding: 5px 10px;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0 5px;
 }
 
 /* Child Component Style */

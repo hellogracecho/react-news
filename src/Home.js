@@ -5,6 +5,7 @@ const BASE_URL =
   API_KEY +
   "&q=";
 const MAIN_CATEGORY = "mainNewsCategory";
+// TODO-EXTRA Country US/CA/KR headlines
 
 class Home extends React.Component {
   constructor() {
@@ -12,7 +13,7 @@ class Home extends React.Component {
     this.state = {
       apiKey: API_KEY,
       articles: [],
-      defaultCategory: "bok choy"
+      defaultCategory: "passionfruit"
     };
 
     // Register functions of the class.
@@ -28,8 +29,10 @@ class Home extends React.Component {
     if (mainCategory === null) {
       this.setCookie(MAIN_CATEGORY, this.state.defaultCategory);
       mainCategory = this.state.defaultCategory;
+      console.log("cookie is not set");
     }
     this.getNews(mainCategory);
+    console.log("cookie is SET!");
   }
 
   // ** This function does not need to be changed. **
@@ -66,12 +69,13 @@ class Home extends React.Component {
   getNews(category) {
     const URL = BASE_URL + category;
 
+    console.log(URL);
     // Request and wait for data from remote server.
     fetch(URL)
       .then(response => response.json())
       // Data retrieved so parse it.
       .then(data => {
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
         // console.log(JSON.stringify(data));
         this.setState({ articles: data.articles });
       })
