@@ -76,7 +76,7 @@ class Home extends React.Component {
       // Data retrieved so parse it.
       .then(data => {
         // console.log(JSON.stringify(data));
-        // console.log(JSON.stringify(data));
+        console.log(JSON.stringify(data.articles));
         this.setState({ articles: data.articles });
       })
       // Data is not retieved.

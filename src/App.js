@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from "./Home";
 import Search from "./Search";
 import About from "./About";
@@ -31,7 +31,13 @@ class App extends Component {
                   ABOUT
                 </NavLink>
               </div>
-              <div className="logo">Graceful News Feed</div>
+              <div>
+                <Link to="/" className="logo">
+                  Graceful
+                  <br />
+                  News Feed
+                </Link>
+              </div>
               <Search />
             </div>
             {/* Our router goes here */}
