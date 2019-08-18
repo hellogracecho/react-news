@@ -14,41 +14,54 @@ class App extends Component {
         <div>
           <div className="wrapper">
             <div className="nav">
-              <div>
+              <div className="grid-nav">
                 <NavLink
                   exact={true}
-                  to="/"
+                  to="/news"
                   activeClassName="active"
                   className="nav-link"
                 >
                   HOME
                 </NavLink>
                 <NavLink
-                  to="/about"
+                  to="/news/about"
                   activeClassName="active"
                   className="nav-link"
                 >
                   ABOUT
                 </NavLink>
               </div>
-              <div>
-                <Link to="/" className="logo">
+              <div className="grid-logo">
+                <Link to="/news" className="logo">
                   Graceful
                   <br />
                   News Feed
                 </Link>
               </div>
-              <Search />
+              <div className="search-and-movielink grid-search">
+                <a
+                  href="http://gcho.bcitwebdeveloper.ca/movie"
+                  alt="Graceful movie feed"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="movie-link"
+                >
+                  GRACEFUL
+                  <br />
+                  MOVIE FEED
+                </a>
+                <Search />
+              </div>
             </div>
             {/* Our router goes here */}
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/news" component={Home} />
 
               {/* Does a redirect. */}
-              <Route path={"/about"} exact component={About} />
+              <Route path={"/news/about"} exact component={About} />
 
               {/* Shows an error page. */}
-              <Route path="*" component={NotFound} />
+              <Route path="/news/*" component={NotFound} />
             </Switch>
           </div>
           <footer>
