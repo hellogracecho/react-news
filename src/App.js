@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Home from "./Home";
-import Search from "./Search";
-import About from "./About";
-import NotFound from "./NotFound";
+import Home from "./component/Home";
+import Search from "./component/Search";
+import About from "./component/About";
+import NotFound from "./component/NotFound";
 import "./App.css";
 import { NavLink } from "react-router-dom";
 
@@ -40,7 +40,7 @@ class App extends Component {
               </div>
               <div className="search-and-movielink grid-search">
                 <a
-                  href="http://gcho.bcitwebdeveloper.ca/movie"
+                  href="https://gcho.bcitwebdeveloper.ca/movie"
                   alt="Graceful movie feed"
                   target="_blank"
                   rel="noopener noreferrer"

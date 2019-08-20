@@ -5,7 +5,14 @@ const BASE_URL =
   API_KEY +
   "&q=";
 const MAIN_CATEGORY = "mainNewsCategory";
+
 // TODO-EXTRA Country US/CA/KR headlines
+const SELECT_COUNTRY = "us";
+const SELECT_COUNTRY_URL =
+  "https://newsapi.org/v2/top-headlines?country=" +
+  SELECT_COUNTRY +
+  "&apiKey=" +
+  API_KEY;
 
 class Home extends React.Component {
   constructor() {
@@ -32,6 +39,7 @@ class Home extends React.Component {
       console.log("cookie is not set");
     }
     this.getNews(mainCategory);
+    console.log(mainCategory);
     console.log("cookie is SET!");
   }
 
@@ -68,15 +76,15 @@ class Home extends React.Component {
 
   getNews(category) {
     const URL = BASE_URL + category;
-
     console.log(URL);
+
     // Request and wait for data from remote server.
     fetch(URL)
       .then(response => response.json())
       // Data retrieved so parse it.
       .then(data => {
         // console.log(JSON.stringify(data));
-        console.log(JSON.stringify(data.articles));
+        // console.log(JSON.stringify(data.articles));
         this.setState({ articles: data.articles });
       })
       // Data is not retieved.
@@ -85,9 +93,28 @@ class Home extends React.Component {
       });
   }
 
+  updateDatabase() {
+    let updateCategory = this.inputSearch.value;
+    // let updatedURL = BASE_URL + updateCategory;
+    // console.log(updatedURL);
+    // TODO if updateURL === null / alert("Enter a valid data")
+    this.setState({ decodeURIComponent: updateCategory });
+    this.getNews(updateCategory);
+  }
+
   render() {
     return (
       <div>
+        <input
+          type="text"
+          placeholder="Find an article"
+          ref={myInputControl => (this.inputSearch = myInputControl)}
+        />
+        <input
+          type="submit"
+          value="enter"
+          onClick={e => this.updateDatabase()}
+        />
         <div>
           {this.state.articles.map((article, index) => (
             <div key={index}>
