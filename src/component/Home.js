@@ -105,6 +105,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
+        {/* This search box is only for test */}
         <input
           type="text"
           placeholder="Find an article"
@@ -115,6 +116,7 @@ class Home extends React.Component {
           value="enter"
           onClick={e => this.updateDatabase()}
         />
+        {/* End of test search box */}
         <div>
           {this.state.articles.map((article, index) => (
             <div key={index}>
