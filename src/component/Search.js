@@ -2,6 +2,15 @@ import React from "react";
 import "./../App.css";
 
 class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.childChange = this.childChange.bind(this);
+  }
+
+  childChange() {
+    this.props.updateDatabase(this.inputSearch.value);
+  }
+
   render() {
     const searchIconStyle = {
       width: "28px",
@@ -14,10 +23,7 @@ class Search extends React.Component {
           placeholder="Find an article"
           ref={myInputControl => (this.inputSearch = myInputControl)}
         />
-        <button
-          onClick={e => this.props.updateDatabase()}
-          className="search-btn"
-        >
+        <button onClick={e => this.childChange()} className="search-btn">
           <svg style={searchIconStyle} viewBox="0 0 24 24">
             <path
               fill="#ff4856"

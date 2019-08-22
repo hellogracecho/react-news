@@ -20,7 +20,8 @@ class Home extends React.Component {
     this.state = {
       apiKey: API_KEY,
       articles: [],
-      defaultCategory: "passionfruit"
+      defaultCategory: "passionfruit",
+      category: ""
     };
 
     // Register functions of the class.
@@ -93,28 +94,35 @@ class Home extends React.Component {
       });
   }
 
+  // ** following 2 functions is to show how it works
+  updateDatabaseTest() {
+    console.log(this.state.category);
+    if (this.state.category != "") {
+      this.getNews(this.state.category);
+    }
+  }
+
   updateDatabase() {
-    let updateCategory = this.inputSearch.value;
-    // let updatedURL = BASE_URL + updateCategory;
-    // console.log(updatedURL);
-    // TODO if updateURL === null / alert("Enter a valid data")
-    this.setState({ decodeURIComponent: updateCategory });
-    this.getNews(updateCategory);
+    console.log("function from Home.js is called");
+    console.log(this.state.category);
+    // this.getNews(this.state.category);
   }
 
   render() {
     return (
       <div>
+        <h1>{this.props.search}</h1>
         {/* This search box is only for test */}
         <input
           type="text"
-          placeholder="Find an article"
-          ref={myInputControl => (this.inputSearch = myInputControl)}
+          placeholder="I'm only test search box"
+          value={this.state.category}
+          onChange={e => this.setState({ category: e.target.value })}
         />
         <input
           type="submit"
           value="enter"
-          onClick={e => this.updateDatabase()}
+          onClick={e => this.updateDatabaseTest()}
         />
         {/* End of test search box */}
         <div>

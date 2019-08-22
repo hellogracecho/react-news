@@ -1,13 +1,30 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from "./component/Home";
-import Search from "./component/Search";
 import About from "./component/About";
+import Search from "./component/Search";
 import NotFound from "./component/NotFound";
 import "./App.css";
 import { NavLink } from "react-router-dom";
 
+const fromHome = new Home();
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.updateDatabase = this.updateDatabase.bind(this);
+    this.state = {
+      search: ""
+    };
+  }
+
+  updateDatabase(e) {
+    if (e != "") {
+      console.log(e);
+      this.setState({ search: e });
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -50,12 +67,16 @@ class App extends Component {
                   <br />
                   MOVIE FEED
                 </a>
-                <Search />
+                <Search updateDatabase={this.updateDatabase} />
               </div>
             </div>
             {/* Our router goes here */}
             <Switch>
-              <Route exact path="/news" component={Home} />
+              <Route
+                exact
+                path="/news"
+                render={() => <Home search={this.state.search} />}
+              />
 
               {/* Does a redirect. */}
               <Route path={"/news/about"} exact component={About} />
@@ -67,7 +88,7 @@ class App extends Component {
           <footer>
             <p>
               <a
-                href="http://hellogracecho.com"
+                href="https://hellogracecho.com"
                 alt="Grace Cho portfolio site"
                 target="_blank"
                 rel="noopener noreferrer"
