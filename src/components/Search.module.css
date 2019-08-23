@@ -1,0 +1,25 @@
+/* Child Component Style */
+/* Search */
+.search-container {
+  /* margin-right: 20px; */
+  display: flex;
+  flex-direction: row;
+  border: #9a9191 2px solid;
+  border-radius: 3px;
+}
+
+.search-container input {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
+  border: none;
+  width: 180px;
+  color: #9a9191;
+  line-height: 1.2em;
+  padding: 5px 10px;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0 5px;
+}

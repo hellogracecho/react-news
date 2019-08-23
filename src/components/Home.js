@@ -1,4 +1,6 @@
 import React from "react";
+import styles from "./Home.module.css";
+
 const API_KEY = "41c3a691c6064f018a7a27d285276ce6";
 const BASE_URL =
   "https://newsapi.org/v2/everything?sortBy=publishedAt&apiKey=" +
@@ -40,6 +42,8 @@ class Home extends React.Component {
       console.log("cookie is not set");
     }
     this.getNews(mainCategory);
+    // this.getNews(this.props.search);
+
     console.log(mainCategory);
     console.log("cookie is SET!");
   }
@@ -102,16 +106,12 @@ class Home extends React.Component {
     }
   }
 
-  updateDatabase() {
-    console.log("function from Home.js is called");
-    console.log(this.state.category);
-    // this.getNews(this.state.category);
-  }
-
   render() {
     return (
       <div>
-        <h1>{this.props.search}</h1>
+        <h1>
+          {this.props.search != "" ? this.props.search : "nothing searched"}
+        </h1>
         {/* This search box is only for test */}
         <input
           type="text"

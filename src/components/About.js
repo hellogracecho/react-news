@@ -1,10 +1,10 @@
 import React from "react";
-import "./../App.css";
+import styles from "./About.module.css";
 
 class About extends React.Component {
   render() {
     return (
-      <div className="about-body">
+      <div className={styles["about-body"]}>
         <h2>Who Am I?</h2>
         <p>
           Visit my portfolio site:{" "}

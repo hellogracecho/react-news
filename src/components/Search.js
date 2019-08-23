@@ -1,5 +1,8 @@
 import React from "react";
-import "./../App.css";
+import Home from "./Home";
+import styles from "./Search.module.css";
+
+const HomeComponent = new Home();
 
 class Search extends React.Component {
   constructor(props) {
@@ -9,6 +12,9 @@ class Search extends React.Component {
 
   childChange() {
     this.props.updateDatabase(this.inputSearch.value);
+    console.log(HomeComponent.state.defaultCategory);
+    // TODO try to use setState but error that is not yet mounted
+    HomeComponent.setState({ category: this.inputSearch.value });
   }
 
   render() {
@@ -17,13 +23,16 @@ class Search extends React.Component {
       height: "28px"
     };
     return (
-      <div className="search-container">
+      <div className={styles["search-container"]}>
         <input
           type="text"
           placeholder="Find an article"
           ref={myInputControl => (this.inputSearch = myInputControl)}
         />
-        <button onClick={e => this.childChange()} className="search-btn">
+        <button
+          onClick={e => this.childChange()}
+          className={styles["search-btn"]}
+        >
           <svg style={searchIconStyle} viewBox="0 0 24 24">
             <path
               fill="#ff4856"

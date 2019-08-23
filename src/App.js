@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Home from "./component/Home";
-import About from "./component/About";
-import Search from "./component/Search";
-import NotFound from "./component/NotFound";
+import Home from "./components/Home";
+import About from "./components/About";
+import Search from "./components/Search";
+import NotFound from "./components/NotFound";
 import "./App.css";
 import { NavLink } from "react-router-dom";
 
-const fromHome = new Home();
+const HomeComponent = new Home();
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.updateDatabase = this.updateDatabase.bind(this);
     this.state = {
       search: ""
     };
@@ -22,6 +21,7 @@ class App extends Component {
     if (e != "") {
       console.log(e);
       this.setState({ search: e });
+      HomeComponent.getNews(e);
     }
   }
 
@@ -38,7 +38,7 @@ class App extends Component {
                   activeClassName="active"
                   className="nav-link"
                 >
-                  HOME
+                  HOMEmmm
                 </NavLink>
                 <NavLink
                   to="/news/about"
@@ -67,7 +67,7 @@ class App extends Component {
                   <br />
                   MOVIE FEED
                 </a>
-                <Search updateDatabase={this.updateDatabase} />
+                <Search updateDatabase={e => this.updateDatabase(e)} />
               </div>
             </div>
             {/* Our router goes here */}
