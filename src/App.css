@@ -29,7 +29,9 @@ h2 {
 h3 {
   color: #38bf57;
 }
-
+hr {
+  border-top: 1px solid #ccbfc0;
+}
 /* Nav bar */
 /* NavLink Style */
 .nav {
@@ -146,9 +148,6 @@ h3 {
     margin-bottom: 0px;
     margin-right: 10px;
   }
-  .search-container {
-    width: 210px;
-  }
 }
 
 @media (max-width: 778px) {
@@ -162,9 +161,6 @@ h3 {
     margin-top: 0;
   }
 
-  .search-container input {
-    width: 100%;
-  }
   .nav {
     grid-gap: 0px;
   }
@@ -206,13 +202,10 @@ h3 {
   .movie-link {
     display: inline-block;
   }
-  .search-container {
-    width: 165px;
-  }
 }
 
 footer {
-  margin: 80px 0 0 0;
+  margin: 50px 0 0 0;
   padding: 20px;
   background: #ff4856;
   color: white;
