@@ -5,10 +5,6 @@ import styles from "./Home.module.css";
 import ShowMore from "react-show-more";
 
 const API_KEY = "41c3a691c6064f018a7a27d285276ce6";
-const BASE_URL =
-  "https://newsapi.org/v2/everything?sortBy=publishedAt&language=en&apiKey=" +
-  API_KEY +
-  "&q=";
 const MAIN_CATEGORY = "mainNewsCategory";
 const cookie = new CookieService();
 
@@ -21,24 +17,18 @@ const DATE_FORMAT = {
 };
 
 class Home extends React.Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
     this.state = {
       apiKey: API_KEY,
-      articles: [],
       headlines: [],
       defaultCategory: "passionfruit",
       category: ""
     };
-
-    this.getNews = this.getNews.bind(this);
   }
 
   // Called when constructor is finished building component.
   componentDidMount() {
-    this._isMounted = true;
     // Set main category from cookie if it does not exist.
     let mainCategory = cookie.getCookie(MAIN_CATEGORY);
     if (mainCategory === null || mainCategory === "") {
@@ -46,34 +36,9 @@ class Home extends React.Component {
       mainCategory = this.state.defaultCategory;
       console.log("cookie is not set");
     }
-    this.getNews(mainCategory);
+    this.props.getNews(mainCategory);
 
     console.log("cookie is SET: " + mainCategory);
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
-  getNews(category) {
-    const URL = BASE_URL + category;
-    console.log(URL);
-
-    // Request and wait for data from remote server.
-    fetch(URL)
-      .then(response => response.json())
-      // Data retrieved so parse it.
-      .then(data => {
-        if (this._isMounted) {
-          // console.log(JSON.stringify(data));
-          // console.log(JSON.stringify(data.articles));
-          this.setState({ articles: data.articles });
-        }
-      })
-      // Data is not retieved.
-      .catch(error => {
-        alert(error);
-      });
   }
 
   render() {
@@ -81,7 +46,7 @@ class Home extends React.Component {
       <div>
         <HeadLines />
         <div className={styles["grid-container"]}>
-          {this.state.articles.map((article, index) => (
+          {this.props.articles.map((article, index) => (
             <div key={index} className={styles["one-grid"]}>
               <div className={styles["image"]}>
                 <a

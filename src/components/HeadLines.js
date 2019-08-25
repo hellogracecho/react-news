@@ -36,7 +36,6 @@ class HeadLines extends Component {
   }
 
   componentDidMount() {
-    this._isMounted = true;
     this.getTopHeadlines();
   }
 
@@ -46,20 +45,17 @@ class HeadLines extends Component {
       .then(response => response.json())
       // Data retrieved so parse it.
       .then(data => {
-        if (this._isMounted) {
-          // console.log(JSON.stringify(data));
-          //   console.log(JSON.stringify(data.articles));
-          this.setState({ headlines: data.articles });
-          console.log(this.state.headlines[0]);
-          this.setState({
-            featureUrl: this.state.headlines[0]["url"],
-            featureUrlToImage: this.state.headlines[0]["urlToImage"],
-            featureTitle: this.state.headlines[0]["title"],
-            featurePublishDate: this.state.headlines[0]["publishedAt"],
-            featureDescription: this.state.headlines[0]["description"],
-            featureAuthor: this.state.headlines[0]["author"]
-          });
-        }
+        // console.log(JSON.stringify(data.articles));
+        this.setState({ headlines: data.articles });
+        console.log(this.state.headlines[0]);
+        this.setState({
+          featureUrl: this.state.headlines[0]["url"],
+          featureUrlToImage: this.state.headlines[0]["urlToImage"],
+          featureTitle: this.state.headlines[0]["title"],
+          featurePublishDate: this.state.headlines[0]["publishedAt"],
+          featureDescription: this.state.headlines[0]["description"],
+          featureAuthor: this.state.headlines[0]["author"]
+        });
       })
       // Data is not retieved.
       .catch(error => {
@@ -67,9 +63,6 @@ class HeadLines extends Component {
       });
   }
 
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
   render() {
     return (
       <div className={styles["headlines-body"]}>

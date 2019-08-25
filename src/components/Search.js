@@ -4,10 +4,6 @@ import styles from "./Search.module.css";
 import ShowMore from "react-show-more";
 
 const API_KEY = "41c3a691c6064f018a7a27d285276ce6";
-const BASE_URL =
-  "https://newsapi.org/v2/everything?sortBy=publishedAt&language=en&apiKey=" +
-  API_KEY +
-  "&q=";
 const MAIN_CATEGORY = "mainNewsCategory";
 const cookie = new CookieService();
 
@@ -21,57 +17,24 @@ const DATE_FORMAT = {
 };
 
 class Search extends React.Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
     this.state = {
       apiKey: API_KEY,
-      articles: [],
       defaultCategory: "passionfruit",
       category: ""
     };
-
-    // Register functions of the class.
-    this.getNews = this.getNews.bind(this);
-    // this.setCookie = this.setCookie.bind(this);
-    // this.getCookie = this.getCookie.bind(this);
   }
 
-  // Called when constructor is finished building component.
   componentDidMount() {
-    this._isMounted = true;
-
-    // Set main category from cookie if it does not exist.
-    // let mainCategory = this.getCookie(MAIN_CATEGORY);
-    // if (mainCategory === null) {
-    //   this.setCookie(MAIN_CATEGORY, this.state.defaultCategory);
-    //   mainCategory = this.state.defaultCategory;
-    //   console.log("cookie is not set");
-    // }
-    // this.getNews(mainCategory);
-    // // this.getNews(this.props.search);
-
-    // console.log(mainCategory);
-    // console.log("cookie is SET!");
-
-    // ? ! let's just do this
-    if (this.props.search !== "") {
-      this.getNews(this.props.search);
-    } else {
-      let mainCategory = cookie.getCookie(MAIN_CATEGORY);
-      if (mainCategory === null || mainCategory === "") {
-        cookie.setCookie(MAIN_CATEGORY, this.state.defaultCategory);
-        mainCategory = this.state.defaultCategory;
-        console.log("cookie is not set");
-      }
-      this.getNews(mainCategory);
-      console.log("cookie is SET: " + mainCategory);
+    let mainCategory = cookie.getCookie(MAIN_CATEGORY);
+    if (mainCategory === null || mainCategory === "") {
+      cookie.setCookie(MAIN_CATEGORY, this.state.defaultCategory);
+      mainCategory = this.state.defaultCategory;
+      console.log("cookie is not set");
     }
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
+    this.props.getNews(mainCategory);
+    console.log("cookie is SET: " + mainCategory);
   }
 
   // ** This function does not need to be changed. **
@@ -105,25 +68,6 @@ class Search extends React.Component {
     return null;
   }
 
-  getNews(category) {
-    const URL = BASE_URL + category;
-    console.log(URL);
-
-    // Request and wait for data from remote server.
-    fetch(URL)
-      .then(response => response.json())
-      // Data retrieved so parse it.
-      .then(data => {
-        if (this._isMounted) {
-          this.setState({ articles: data.articles });
-        }
-      })
-      // Data is not retieved.
-      .catch(error => {
-        alert(error);
-      });
-  }
-
   render() {
     return (
       <div>
@@ -134,7 +78,7 @@ class Search extends React.Component {
               this.props.search.split("+").join(" ")}
         </h2>
         <div className={styles["grid-container"]}>
-          {this.state.articles.map((article, index) => (
+          {this.props.articles.map((article, index) => (
             <div key={index} className={styles["one-grid"]}>
               <div className={styles["image"]}>
                 <a
@@ -146,11 +90,11 @@ class Search extends React.Component {
                   <img
                     src={article.urlToImage}
                     alt={article.title}
-                    onError={e => {
-                      console.log("img cannot be found");
-                      e.target.onError = null;
-                      e.target.src = "error.png";
-                    }}
+                    // onError={e => {
+                    //   console.log("img cannot be found");
+                    //   e.target.onError = null;
+                    //   e.target.src = "error.png";
+                    // }}
                   />
                 </a>
               </div>

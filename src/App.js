@@ -12,22 +12,27 @@ import searchStyle from "./components/SearchBox.module.css";
 const cookie = new CookieService();
 const MAIN_CATEGORY = "mainNewsCategory";
 
+const API_KEY = "41c3a691c6064f018a7a27d285276ce6";
+const BASE_URL =
+  "https://newsapi.org/v2/everything?sortBy=publishedAt&language=en&apiKey=" +
+  API_KEY +
+  "&q=";
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search: "",
-      defaultCategory: "passionfruit"
+      articles: [],
+      defaultCategory: "passionfruit",
+      callback: ""
     };
-    this.Search = React.createRef();
   }
 
-  updateSearchResult() {
-    // this.setState({ search: this.inputSearch.value });
-    // this.Search.current.getNews(this.inputSearch.value);
-
+  handleChange = e => {
+    e.preventDefault();
     // Romove any whitespace in searching words
-    let stringArray = this.inputSearch.value
+    let stringArray = e.target.value
       .trim()
       .replace(/ +/g, " ")
       .split(" ");
@@ -36,14 +41,34 @@ class App extends Component {
       let input = stringArray.join("+");
       this.setState({ search: input });
       cookie.setCookie(MAIN_CATEGORY, input);
-      // this.Search.current.getNews(input);
     } else {
-      let input = this.inputSearch.value;
+      let input = e.target.value;
       this.setState({ search: input });
       cookie.setCookie(MAIN_CATEGORY, input);
-      // this.Search.current.getNews(input);
     }
-  }
+    // this.setState({ search: e.target.value });
+    // cookie.setCookie(MAIN_CATEGORY, e.target.value);
+  };
+
+  getNews = category => {
+    if (!category) return;
+    const URL = BASE_URL + category;
+    console.log(URL);
+
+    // Request and wait for data from remote server.
+    fetch(URL)
+      .then(response => response.json())
+      // Data retrieved so parse it.
+      .then(data => {
+        // if (this._isMounted) {
+        this.setState({ articles: data.articles });
+        // }
+      })
+      // Data is not retieved.
+      .catch(error => {
+        alert(error);
+      });
+  };
 
   render() {
     return (
@@ -91,11 +116,11 @@ class App extends Component {
                   <input
                     type="text"
                     placeholder="Find an article"
-                    ref={myInputControl => (this.inputSearch = myInputControl)}
+                    onChange={this.handleChange}
                   />
                   <Link to="/news/search">
                     <button
-                      onClick={e => this.updateSearchResult(e)}
+                      onClick={() => this.getNews(this.state.search)}
                       className={searchStyle["search-btn"]}
                     >
                       <svg
@@ -121,7 +146,13 @@ class App extends Component {
               <Route
                 exact
                 path="/news"
-                render={() => <Home search={this.state.search} />}
+                render={() => (
+                  <Home
+                    getNews={this.getNews}
+                    articles={this.state.articles}
+                    search={this.state.search}
+                  />
+                )}
               />
 
               {/* Does a redirect. */}
@@ -130,7 +161,11 @@ class App extends Component {
                 path={"/news/search"}
                 exact
                 render={() => (
-                  <Search ref={this.Search} search={this.state.search} />
+                  <Search
+                    getNews={this.getNews}
+                    articles={this.state.articles}
+                    search={this.state.search}
+                  />
                 )}
               />
 
