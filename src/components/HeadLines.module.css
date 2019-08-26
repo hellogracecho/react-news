@@ -66,15 +66,26 @@
 
 .content {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 10px;
   align-content: flex-start;
 }
 .feature-title {
-  font-size: 1.9em;
+  font-size: 1.7em;
+}
+.feature-title a {
+  color: #537dcc;
+  text-decoration: none;
 }
 
 .feature-description {
-  font-size: 1.2em;
+  font-size: 1em;
+  max-height: 115px;
+  overflow-y: auto;
+}
+
+.show-text {
+  color: #537dcc;
+  font-style: italic;
 }
 
 .feature-publish-date {
@@ -86,7 +97,7 @@
   text-align: end;
   font-size: 1em;
   color: #9a9191;
-  margin: -15px 0 10px 0;
+  margin: -5px 0 10px 0;
 }
 
 .feature-link {

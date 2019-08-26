@@ -1,6 +1,6 @@
 {
   "name": "myapp",
-  "homepage": "http://gcho.bcitwebdeveloper.ca/news",
+  "homepage": "https://gcho.bcitwebdeveloper.ca/news",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

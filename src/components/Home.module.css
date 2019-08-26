@@ -50,7 +50,10 @@ p {
   color: #537dcc;
   font-style: italic;
 }
-
+.title a {
+  color: #537dcc;
+  text-decoration: none;
+}
 .author {
   text-align: end;
   font-size: 0.8em;

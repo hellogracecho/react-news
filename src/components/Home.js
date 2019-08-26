@@ -73,7 +73,16 @@ class Home extends React.Component {
                 </a>
               </div>
               <div className={styles["content"]}>
-                <h2 className={styles["title"]}>{article.title}</h2>
+                <h2 className={styles["title"]}>
+                  <a
+                    href={article.url}
+                    alt={article.title}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {article.title}
+                  </a>
+                </h2>
                 <div className={styles["publish-date"]}>
                   {new Intl.DateTimeFormat("default", DATE_FORMAT).format(
                     new Date(article.publishedAt)

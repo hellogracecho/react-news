@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
 import styles from "./HeadLines.module.css";
+import ShowMore from "react-show-more";
 
 const API_KEY = "41c3a691c6064f018a7a27d285276ce6";
 const SELECT_COUNTRY = "ca";
@@ -111,7 +112,14 @@ class HeadLines extends Component {
             </div>
             <div className={styles["content"]}>
               <h2 className={styles["feature-title"]}>
-                {this.state.featureTitle}
+                <a
+                  href={this.state.featureUrl}
+                  alt={this.state.featureTitle}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {this.state.featureTitle}
+                </a>
               </h2>
               <div className={styles["feature-publish-date"]}>
                 <Moment format="MMM DD, hh:mm A" withTitle>
@@ -119,9 +127,16 @@ class HeadLines extends Component {
                 </Moment>
               </div>
               <div className={styles["feature-description"]}>
-                {this.state.featureDescription === null
-                  ? "Description is not available in this article."
-                  : this.state.featureDescription}
+                <ShowMore
+                  lines={6}
+                  more="show more"
+                  less="show less"
+                  anchorClass={styles["show-text"]}
+                >
+                  {this.state.featureDescription === null
+                    ? "Description is not available in this article."
+                    : this.state.featureDescription}
+                </ShowMore>
               </div>
               <div className={styles["feature-author"]}>
                 {this.state.featureAuthor === null
