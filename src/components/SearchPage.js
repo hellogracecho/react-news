@@ -1,6 +1,6 @@
 import React from "react";
 import CookieService from "./CookieService";
-import styles from "./Search.module.css";
+import styles from "./SearchPage.module.css";
 import ShowMore from "react-show-more";
 
 const API_KEY = "41c3a691c6064f018a7a27d285276ce6";
