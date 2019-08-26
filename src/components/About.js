@@ -7,25 +7,36 @@ class About extends React.Component {
       <div className={styles["about-body"]}>
         <h2>Who Am I?</h2>
         <p>
+          Check Out Graceful Movie Feed:{" "}
+          <a
+            href="https://gcho.bcitwebdeveloper.ca/movie"
+            alt="Gracefull movie feed"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://gcho.bcitwebdeveloper.ca/movie
+          </a>
+        </p>
+        <p>
           Visit my portfolio site:{" "}
           <a
-            href="http://hellogracecho.com"
+            href="https://hellogracecho.com"
             alt="Grace Cho portfolio site"
             target="_blank"
             rel="noopener noreferrer"
           >
-            http://hellogracecho.com
+            https://hellogracecho.com
           </a>
         </p>
         <p>
           Visit my BCIT site:{" "}
           <a
-            href="http://gcho.bcitwebdeveloper.ca"
+            href="https://gcho.bcitwebdeveloper.ca"
             alt="Grace Cho BCIT TWD site"
             target="_blank"
             rel="noopener noreferrer"
           >
-            http://gcho.bcitwebdeveloper.ca
+            https://gcho.bcitwebdeveloper.ca
           </a>
         </p>
         <br />

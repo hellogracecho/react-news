@@ -47,7 +47,7 @@ class HeadLines extends Component {
       .then(data => {
         // console.log(JSON.stringify(data.articles));
         this.setState({ headlines: data.articles });
-        console.log(this.state.headlines[0]);
+        // console.log(this.state.headlines[0]);
         this.setState({
           featureUrl: this.state.headlines[0]["url"],
           featureUrlToImage: this.state.headlines[0]["urlToImage"],
@@ -80,12 +80,12 @@ class HeadLines extends Component {
                   rel="noopener noreferrer"
                 >
                   <div className={styles["title"]}>{article.title}</div>
-                  <div className={styles["publish-date"]}>
-                    {new Intl.DateTimeFormat("default", DATE_FORMAT).format(
-                      new Date(article.publishedAt)
-                    )}
-                  </div>
                 </a>
+                <div className={styles["publish-date"]}>
+                  {new Intl.DateTimeFormat("default", DATE_FORMAT).format(
+                    new Date(article.publishedAt)
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -102,9 +102,9 @@ class HeadLines extends Component {
                   src={this.state.featureUrlToImage}
                   alt={this.state.featureTitle}
                   onError={e => {
-                    console.log("img cannot be found");
+                    // console.log("img cannot be found");
                     e.target.onError = null;
-                    e.target.src = "error.png";
+                    e.target.src = "/error.png";
                   }}
                 />
               </a>

@@ -45,6 +45,12 @@ class Home extends React.Component {
     return (
       <div>
         <HeadLines />
+        <h2 className={styles["search-text"]}>
+          {this.props.search === ""
+            ? null
+            : "Recent Search History: " +
+              this.props.search.split("+").join(" ")}
+        </h2>
         <div className={styles["grid-container"]}>
           {this.props.articles.map((article, index) => (
             <div key={index} className={styles["one-grid"]}>
@@ -59,9 +65,9 @@ class Home extends React.Component {
                     src={article.urlToImage}
                     alt={article.title}
                     onError={e => {
-                      console.log("img cannot be found");
+                      // console.log("img cannot be found");
                       e.target.onError = null;
-                      e.target.src = "error.png";
+                      e.target.src = "/error.png";
                     }}
                   />
                 </a>

@@ -1,10 +1,14 @@
 /* Child Component Style */
 /* About */
 .about-body {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 .about-body h2 {
   color: #679cff;
+  margin: 20px 0;
+}
+.about-body p {
+  margin: 10px 0;
 }
 .about-body a {
   color: #38bf57;

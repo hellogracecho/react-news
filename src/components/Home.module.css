@@ -30,7 +30,11 @@ p {
   grid-gap: 5px;
   align-content: space-between;
 }
-.title {
+
+.search-text {
+  font-size: 1.5em;
+  color: #9a9191;
+  margin: 20px 0;
 }
 
 .publish-date {
@@ -65,4 +69,24 @@ p {
   color: #ff4856;
   text-decoration: none;
   border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+.link a:hover {
+  background: #ff4856;
+  color: #ffedee;
+}
+
+/* Media Query */
+@media (max-width: 640px) {
+  h2 {
+    font-size: 1.2em;
+  }
+  .search-text {
+    font-size: 1em;
+    margin: 10px 0;
+  }
+  .description,
+  .publish-date {
+    font-size: 0.9em;
+  }
 }

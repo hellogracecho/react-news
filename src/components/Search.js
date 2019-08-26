@@ -90,11 +90,11 @@ class Search extends React.Component {
                   <img
                     src={article.urlToImage}
                     alt={article.title}
-                    // onError={e => {
-                    //   console.log("img cannot be found");
-                    //   e.target.onError = null;
-                    //   e.target.src = "error.png";
-                    // }}
+                    onError={e => {
+                      // console.log("img cannot be found");
+                      e.target.onError = null;
+                      e.target.src = "/error.png";
+                    }}
                   />
                 </a>
               </div>
@@ -112,10 +112,17 @@ class Search extends React.Component {
                     less="show less"
                     anchorClass={styles["show-text"]}
                   >
-                    {article.description}
+                    {article.description === null
+                      ? "Description is not available in this article."
+                      : article.description}
                   </ShowMore>
                 </div>
-                <div className={styles["author"]}>by {article.author}</div>
+                <div className={styles["author"]}>
+                  by{" "}
+                  {article.author === null
+                    ? "The author information is not available."
+                    : article.author}
+                </div>
                 <div className={styles["link"]}>
                   <a
                     href={article.url}
