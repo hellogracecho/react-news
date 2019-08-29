@@ -51,7 +51,7 @@ class App extends Component {
   };
 
   getNews = category => {
-    if (!category) return;
+    if (!category || category.trim() === "") return;
     const URL = BASE_URL + category;
     console.log(URL);
 
